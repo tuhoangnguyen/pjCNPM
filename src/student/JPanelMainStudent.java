@@ -3,6 +3,8 @@ package student;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.BoxLayout;
@@ -173,7 +175,11 @@ public class JPanelMainStudent extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		// sự kiện nút profile
 		jbuttonProfile = new JButton("Thông tin     ");
-//		jbuttonProfile.addActionListener(ac);
+		jbuttonProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initJFrame();
+			}
+		});
 
 		jbuttonProfile
 				.setIcon(new ImageIcon(JPanelMainStudent.class.getResource("/icon/49576_new_add_plus_user_icon.png")));
@@ -186,7 +192,11 @@ public class JPanelMainStudent extends JPanel {
 		panel.add(jbuttonProfile);
 
 		jbuttonCourse = new JButton("Khóa học      ");
-//		jbuttonCourse.addActionListener(ac);
+		jbuttonCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jbuttonCourse_actionPerformed(e);
+			}
+		});
 
 		jbuttonCourse.setIcon(new ImageIcon(JPanelMainStudent.class.getResource("/icon/online-learning.png")));
 		jbuttonCourse.setForeground(new Color(255, 255, 255));
@@ -256,16 +266,34 @@ public class JPanelMainStudent extends JPanel {
 //	
 //	}
 	public void initJFrame() {
-		
+		JPanelProfile jPanelProfile = new JPanelProfile(data);
+		panelMainStudent.add(jPanelProfile);
+		jPanelProfile.setVisible(true);
 
 	}
 
 
 	public void viewProfile() {
 		clearScreen();
-		
+		JPanelProfile jPanelProfile = new JPanelProfile(data);
+		panelMainStudent.add(jPanelProfile);
+		jPanelProfile.setVisible(true);
 	}
+	
+	public void viewCourse() {
+		clearScreen();
+		JPanelCourse jPanelCourse = new JPanelCourse(data);
+		panelMainStudent.add(jPanelCourse);
+		jPanelCourse.setVisible(true);
 
+	}
+	
+	public void jbuttonCourse_actionPerformed(ActionEvent e) {
+		clearScreen();
+		JPanelCourse jPanelCourse = new JPanelCourse(data);
+		panelMainStudent.add(jPanelCourse);
+		jPanelCourse.setVisible(true);
+	}
 
 
 }
