@@ -196,8 +196,8 @@ public class JPanelCourse extends JPanel {
 		data.put("course", courseModel.findCourseByID(valueID));
 		data.put("teacherName", model.findByName(valueName));
 		
-//		JFrameDetails jFrameDetails = new JFrameDetails(data);
-//		jFrameDetails.setVisible(true);
+		JFrameDetails jFrameDetails = new JFrameDetails(data);
+		jFrameDetails.setVisible(true);
 	}
 	public void jbuttonSearch_jbuttonSearch(ActionEvent e) {
 		CourseModel courseModel = new CourseModel();
