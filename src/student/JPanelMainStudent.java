@@ -207,7 +207,11 @@ public class JPanelMainStudent extends JPanel {
 		panel.add(jbuttonCourse);
 		// sự kiện nút my course
 		jbuttonMyCourse = new JButton("Lịch học       ");
-//		jbuttonMyCourse.addActionListener(ac);
+		jbuttonMyCourse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jbuttonMyCourse_actionPerformed(e);
+			}
+		});
 
 		jbuttonMyCourse.setForeground(new Color(255, 255, 255));
 		jbuttonMyCourse.setFocusPainted(false);
@@ -272,27 +276,19 @@ public class JPanelMainStudent extends JPanel {
 
 	}
 
-
-	public void viewProfile() {
-		clearScreen();
-		JPanelProfile jPanelProfile = new JPanelProfile(data);
-		panelMainStudent.add(jPanelProfile);
-		jPanelProfile.setVisible(true);
-	}
-	
-	public void viewCourse() {
-		clearScreen();
-		JPanelCourse jPanelCourse = new JPanelCourse(data);
-		panelMainStudent.add(jPanelCourse);
-		jPanelCourse.setVisible(true);
-
-	}
-	
 	public void jbuttonCourse_actionPerformed(ActionEvent e) {
 		clearScreen();
 		JPanelCourse jPanelCourse = new JPanelCourse(data);
 		panelMainStudent.add(jPanelCourse);
 		jPanelCourse.setVisible(true);
+	}
+	
+	public void jbuttonMyCourse_actionPerformed(ActionEvent e) {
+		System.out.println(1);
+		clearScreen();
+		JPanelManager jPanelManager = new JPanelManager(data);
+		panelMainStudent.add(jPanelManager);
+		jPanelManager.setVisible(true);
 	}
 
 
