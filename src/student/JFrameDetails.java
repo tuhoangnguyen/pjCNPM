@@ -107,6 +107,11 @@ public class JFrameDetails extends JFrame {
 		panel.add(jbuttonGiangVien);
 
 		jbuttonDangKy = new JButton("ĐĂNG KÝ");
+		jbuttonDangKy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jbuttonDangKy_actionPerformed(e);
+			}
+		});
 //		jbuttonDangKy.addActionListener(ac);
 		jbuttonDangKy.setBackground(new Color(153, 153, 255));
 		jbuttonDangKy.setFocusPainted(false);
@@ -157,12 +162,12 @@ public class JFrameDetails extends JFrame {
 		panelMainGioiThieu.add(panelTeacher);
 		panelTeacher.setVisible(true);
 	}
-//	public void jbuttonDangKy_actionPerformed(ActionEvent e) {
-//		clearScreen();
-//		JPanelDangKy dangKy = new JPanelDangKy(data);
-//		panelMainGioiThieu.add(dangKy);
-//		dangKy.setVisible(true);
-//	}
+	public void jbuttonDangKy_actionPerformed(ActionEvent e) {
+		clearScreen();
+		JPanelDangKy dangKy = new JPanelDangKy(data);
+		panelMainGioiThieu.add(dangKy);
+		dangKy.setVisible(true);
+	}
 
 
 //	public void viewDangKy() {
