@@ -83,6 +83,11 @@ public class JPanelMainStudent extends JPanel {
 		panel.add(jbuttonMyCourse);
 		// sự kiện nút score
 		jbuttonScore = new JButton("Điểm             ");
+		jbuttonScore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jbuttonScore_actionPerformed(e);
+			}
+		});
 //		jbuttonScore.addActionListener(ac);
 
 		jbuttonScore.setIcon(new ImageIcon(JPanelMainStudent.class.getResource("/icon/8726122_invoice_icon.png")));
@@ -162,5 +167,15 @@ public class JPanelMainStudent extends JPanel {
 		panelMainStudent.add(jPanelHocPhi);
 		jPanelHocPhi.setVisible(true);
 	}
+<<<<<<< HEAD
+	
+	public void jbuttonScore_actionPerformed(ActionEvent e) {
+		clearScreen();
+		JPanelScore jPanelScore = new JPanelScore(data);
+		panelMainStudent.add(jPanelScore);
+		jPanelScore.setVisible(true);
+	}
+=======
+>>>>>>> c191a628b4e5bd3f218d5e0a7afc4fb86fd7e225
 
 }

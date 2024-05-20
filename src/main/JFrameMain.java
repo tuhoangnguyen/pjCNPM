@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import entities.Account;
 import student.JPanelMainStudent;
 //import teacher.JPanelMainTeacher;
+import teacher.JPanelMainTeacher;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -122,11 +123,11 @@ public class JFrameMain extends JFrame {
 			JPanelMainStudent jPanelMainStudent = new JPanelMainStudent(data);
 			contentPane.add(jPanelMainStudent);
 			jPanelMainStudent.setVisible(true);
+		} else if(account.getRole() == 2) {
+			JPanelMainTeacher jPanelMainTeacher = new JPanelMainTeacher(data);
+			contentPane.add(jPanelMainTeacher);
+			jPanelMainTeacher.setVisible(true);
 		}
-//		} else if(account.getRole() == 2) {
-//			JPanelMainTeacher jPanelMainTeacher = new JPanelMainTeacher(data);
-//			contentPane.add(jPanelMainTeacher);
-//			jPanelMainTeacher.setVisible(true);
 //		} else if(account.getRole() == 0) {
 //			JPanelMainAdmin admin = new JPanelMainAdmin(data);
 //			contentPane.add(admin);
