@@ -274,15 +274,75 @@ public class JFrameViewList extends JFrame {
 	}
 
 	public void jtableListStudent_mouseClicked(MouseEvent e) {
-		
+		int selectedRow = jtableListStudent.getSelectedRow();
+		String valueName = jtableListStudent.getValueAt(selectedRow, 1).toString();
+		String valueID = jtableListStudent.getValueAt(selectedRow, 0).toString();
+		jtextFieldName.setText(valueName);
+
+		jtextFieldStudentID.setText(valueID);
+		ScoreModel scoreModel = new ScoreModel();
+		StudentModel studentModel = new StudentModel();
+		int courseID = (int) data.get("courseID");
+		int studentID = studentModel.findStudentByName(valueName).getStudentID();
+		if (scoreModel.findScoreST(studentID, courseID) == null) {
+			jtextFieldActiveProcess.setText("null");
+			jtextFieldMidExam.setText("null");
+			jtextFieldFinalExam.setText("null");
+		} else {
+			jtextFieldActiveProcess
+					.setText(String.valueOf(scoreModel.findScoreST(studentID, courseID).getDiemquatrinh()));
+			jtextFieldMidExam.setText(String.valueOf(scoreModel.findScoreST(studentID, courseID).getDiemgiuaki()));
+			jtextFieldFinalExam.setText(String.valueOf(scoreModel.findScoreST(studentID, courseID).getDiemcuoiki()));
+		}
+
+		jbuttonUpdateScore.setEnabled(true);
 	}
 
 	public void jbuttonUpdateScore_actionPerformed(ActionEvent e) {
-
+		int value = JOptionPane.showConfirmDialog(contentPane, "Bạn chắc chưa?", "Chấm điểm",
+				JOptionPane.YES_NO_OPTION);
+		if (value == 0) {
+			jtextFieldActiveProcess.setEditable(true);
+			jtextFieldMidExam.setEditable(true);
+			jtextFieldFinalExam.setEditable(true);
+			jbuttonSave.setEnabled(true);
+		}
 
 	}
 
 	public void jbuttonSave_actionPerformed(ActionEvent e) {
+		int courseID = (int) data.get("courseID");
+		ScoreModel scoreModel = new ScoreModel();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		StudentModel studentModel = new StudentModel();
+		if (jcomboBox_Caculation.getSelectedItem().equals("ASC")) {
+			score = new Score(Double.parseDouble(jtextFieldActiveProcess.getText()),
+					Double.parseDouble(jtextFieldMidExam.getText()), Double.parseDouble(jtextFieldFinalExam.getText()));
+			rank = scoreModel.rank(score);
+		} else if (jcomboBox_Caculation.getSelectedItem().equals("CSBC")) {
+			score = new Score(Double.parseDouble(jtextFieldActiveProcess.getText()),
+					Double.parseDouble(jtextFieldMidExam.getText()), Double.parseDouble(jtextFieldFinalExam.getText()));
+			rank = scoreModel.rank2(score);
+		}
+		String content = String.valueOf(studentModel.findStudentByName(jtextFieldName.getText()).getStudentID()) + ","
+				+ String.valueOf(courseID) + "," + String.valueOf(jtextFieldActiveProcess.getText()) + ","
+				+ String.valueOf(jtextFieldMidExam.getText()) + "," + String.valueOf(jtextFieldFinalExam.getText())
+				+ "," + rank + "," + dateFormat.format(new Date());
+		if (scoreModel.findScoreST(studentModel.findStudentByName(jtextFieldName.getText()).getStudentID(),
+				courseID) != null) {
+			if (scoreModel.updateScore(studentModel.findStudentByName(jtextFieldName.getText()).getStudentID(),
+					courseID, content)) {
+				JOptionPane.showMessageDialog(this, "Tạo điểm thành công!");
+			} else {
+				JOptionPane.showMessageDialog(this, "Thất bại!");
+			}
+		} else {
+			if (scoreModel.createNewScore(content)) {
+				JOptionPane.showMessageDialog(this, "Tạo điểm thành công!");
+			} else {
+				JOptionPane.showMessageDialog(this, "Thất bại!");
+			}
+		}
 
 	
 

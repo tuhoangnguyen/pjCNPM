@@ -167,7 +167,6 @@ public class JPanelMainStudent extends JPanel {
 		panelMainStudent.add(jPanelHocPhi);
 		jPanelHocPhi.setVisible(true);
 	}
-<<<<<<< HEAD
 	
 	public void jbuttonScore_actionPerformed(ActionEvent e) {
 		clearScreen();
@@ -175,7 +174,5 @@ public class JPanelMainStudent extends JPanel {
 		panelMainStudent.add(jPanelScore);
 		jPanelScore.setVisible(true);
 	}
-=======
->>>>>>> c191a628b4e5bd3f218d5e0a7afc4fb86fd7e225
 
 }
