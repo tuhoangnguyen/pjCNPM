@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import admin.JPanelMainAdmin;
+
 //import admin.JPanelMainAdmin;
 
 import java.awt.ComponentOrientation;
@@ -127,12 +129,11 @@ public class JFrameMain extends JFrame {
 			JPanelMainTeacher jPanelMainTeacher = new JPanelMainTeacher(data);
 			contentPane.add(jPanelMainTeacher);
 			jPanelMainTeacher.setVisible(true);
+		} else if(account.getRole() == 0) {
+			JPanelMainAdmin admin = new JPanelMainAdmin(data);
+			contentPane.add(admin);
+			admin.setVisible(true);
 		}
-//		} else if(account.getRole() == 0) {
-//			JPanelMainAdmin admin = new JPanelMainAdmin(data);
-//			contentPane.add(admin);
-//			admin.setVisible(true);
-//		}
 	}
 	public void jmenuItemLogOut_actionPerformed(ActionEvent e) {
 		JFrameLogin jFrameLogin = new JFrameLogin();
