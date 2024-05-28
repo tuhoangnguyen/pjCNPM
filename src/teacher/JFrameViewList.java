@@ -87,7 +87,7 @@ public class JFrameViewList extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameViewList() {
-		setTitle("List Student");
+		setTitle("Danh sách sinh viên");
 		setBounds(100, 100, 696, 418);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,7 +111,7 @@ public class JFrameViewList extends JFrame {
 		scrollPane.setViewportView(jtableListStudent);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Info", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(null, "Thông tin", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(364, 36, 304, 112);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -229,7 +229,9 @@ public class JFrameViewList extends JFrame {
 		this.data = data;
 		initJFrame();
 	}
-
+	
+	
+	// 3.2 Hệ thống chuyển hướng đến trang danh sách sinh viên đang theo học khóa học đó.
 	public void initJFrame() {
 		int courseID = (int) data.get("courseID");
 		CourseModel courseModel = new CourseModel();
@@ -260,7 +262,7 @@ public class JFrameViewList extends JFrame {
 			defaultTableModel.addRow(new Object[] { "st0" + model.checkStudent(managers.getMasv()).getStudentID(),
 					model.checkStudent(managers.getMasv()).getFullName(),
 					scoreModel.findScoreST(model.checkStudent(managers.getMasv()).getStudentID(), courseID) == null
-							? "null"
+							? ""
 							: scoreModel.findScoreST(model.checkStudent(managers.getMasv()).getStudentID(), courseID)
 									.getXeploai() });
 		}
@@ -272,7 +274,8 @@ public class JFrameViewList extends JFrame {
 		initJFrame();
 
 	}
-
+	
+	// 3.3 Giảng viên chọn một sinh viên cụ thể từ danh sách.
 	public void jtableListStudent_mouseClicked(MouseEvent e) {
 		int selectedRow = jtableListStudent.getSelectedRow();
 		String valueName = jtableListStudent.getValueAt(selectedRow, 1).toString();
@@ -285,9 +288,9 @@ public class JFrameViewList extends JFrame {
 		int courseID = (int) data.get("courseID");
 		int studentID = studentModel.findStudentByName(valueName).getStudentID();
 		if (scoreModel.findScoreST(studentID, courseID) == null) {
-			jtextFieldActiveProcess.setText("null");
-			jtextFieldMidExam.setText("null");
-			jtextFieldFinalExam.setText("null");
+			jtextFieldActiveProcess.setText("");
+			jtextFieldMidExam.setText("");
+			jtextFieldFinalExam.setText("");
 		} else {
 			jtextFieldActiveProcess
 					.setText(String.valueOf(scoreModel.findScoreST(studentID, courseID).getDiemquatrinh()));
@@ -297,7 +300,8 @@ public class JFrameViewList extends JFrame {
 
 		jbuttonUpdateScore.setEnabled(true);
 	}
-
+	
+	// 3.4 Giảng viên bấm nút "Cập nhật" để bắt đầu quá trình chấm điểm.
 	public void jbuttonUpdateScore_actionPerformed(ActionEvent e) {
 		int value = JOptionPane.showConfirmDialog(contentPane, "Bạn chắc chưa?", "Chấm điểm",
 				JOptionPane.YES_NO_OPTION);
@@ -310,6 +314,11 @@ public class JFrameViewList extends JFrame {
 
 	}
 
+	/*
+	 * 3.5. Giảng viên nhập điểm cho sinh viên. 
+	 * 3.6. Giảng viên chọn phương thức tính điểm, có thể là ASC (Trung bình cộng) hoặc CSBC (Tính điểm theo quy định). 
+	 * 3.7. Sau khi chấm điểm xong, giảng viên tiến hành bấm nút "Lưu".
+	 */
 	public void jbuttonSave_actionPerformed(ActionEvent e) {
 		int courseID = (int) data.get("courseID");
 		ScoreModel scoreModel = new ScoreModel();
@@ -332,14 +341,18 @@ public class JFrameViewList extends JFrame {
 				courseID) != null) {
 			if (scoreModel.updateScore(studentModel.findStudentByName(jtextFieldName.getText()).getStudentID(),
 					courseID, content)) {
+				// 3.9 Hệ thống hiển thị thông báo chấm điểm thành công.
 				JOptionPane.showMessageDialog(this, "Tạo điểm thành công!");
 			} else {
+				// 3.9 Hệ thống hiển thị thông báo chấm điểm thất bại.
 				JOptionPane.showMessageDialog(this, "Thất bại!");
 			}
 		} else {
 			if (scoreModel.createNewScore(content)) {
+				// 3.9 Hệ thống hiển thị thông báo chấm điểm thành công.
 				JOptionPane.showMessageDialog(this, "Tạo điểm thành công!");
 			} else {
+				// 3.9 Hệ thống hiển thị thông báo chấm điểm thất bại.
 				JOptionPane.showMessageDialog(this, "Thất bại!");
 			}
 		}

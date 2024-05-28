@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
@@ -105,7 +107,7 @@ public class JPanelCourse extends JPanel {
 	public void initJFrame() {
 		CourseModel courseModel = new CourseModel();
 
-		TeacherModel model = new TeacherModel();
+		TeacherModel teacherModel = new TeacherModel();
 
 		DefaultTableModel defaultTableModel = new DefaultTableModel() {
 
@@ -116,18 +118,18 @@ public class JPanelCourse extends JPanel {
 			}
 
 		};
-		defaultTableModel.addColumn("ID");
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Teacher Name");
-		defaultTableModel.addColumn("Start Date");
-		defaultTableModel.addColumn("Date");
-		defaultTableModel.addColumn("Fee");
-		defaultTableModel.addColumn("Quantity");
+		defaultTableModel.addColumn("Mã khóa học");
+		defaultTableModel.addColumn("Tên khóa học");
+		defaultTableModel.addColumn("Tên giảng viên");
+		defaultTableModel.addColumn("Ngày bắt đầu");
+		defaultTableModel.addColumn("Thứ");
+		defaultTableModel.addColumn("Học phí");
+		defaultTableModel.addColumn("Số lượng");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		for (Course courses : courseModel.findAll()) {
 
 			defaultTableModel.addRow(new Object[] { courses.getCourseID(), courses.getCourseName(),
-					model.findById(courses.getTeacherID()).getName(), dateFormat.format(courses.getStartDate()),
+					teacherModel.findById(courses.getTeacherID()).getName(), dateFormat.format(courses.getStartDate()),
 					"Thứ: " + courses.getNgayhoc(), courses.getFee() + " vnd", courses.getQuantity(),
 
 			});
@@ -166,13 +168,20 @@ public class JPanelCourse extends JPanel {
 	}
 
 	public void jbuttonCreateNewCourse_actionPerformed(ActionEvent e) {
-		
+		JFrameNewCourse course = new JFrameNewCourse();
+		course.setVisible(true);
 
 	}
 	
 	
 	public void jbuttonUpdateCourse_actionPerformed(ActionEvent e) {
-		
+		CourseModel courseModel = new CourseModel();
+		int getSelectedRow = jtableCourse.getSelectedRow();
+		courseID = Integer.parseInt(jtableCourse.getValueAt(getSelectedRow, 0).toString());
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("course", courseModel.findCourseByID(courseID));
+		JFrameUpdateCourse jFrameUpdateCourse = new JFrameUpdateCourse(data);
+		jFrameUpdateCourse.setVisible(true);
 	}
 	
 }

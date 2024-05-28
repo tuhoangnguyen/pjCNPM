@@ -4,16 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Teacher {
-	//1,lethanhtu,20-03-2003,phone1,email1,image1
 	private int teacherID;
+	private int accountID;
 	private String name;
 	private Date dob;
 	private String phone;
 	private String email;
 	private String image;
-	public Teacher(int teacherID, String name, Date dob, String phone, String email, String image) {
+
+	public Teacher(int teacherID, int accountID, String name, Date dob, String phone, String email, String image) {
 		super();
 		this.teacherID = teacherID;
+		this.accountID = accountID;
 		this.name = name;
 		this.dob = dob;
 		this.phone = phone;
@@ -28,6 +30,12 @@ public class Teacher {
 	}
 	public void setTeacherID(int teacherID) {
 		this.teacherID = teacherID;
+	}
+	public int getAccountID() {
+		return accountID;
+	}
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
 	}
 	public String getName() {
 		return name;
@@ -61,12 +69,10 @@ public class Teacher {
 	}
 	@Override
 	public String toString() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		return "Teacher [teacherID=" + teacherID + ", name=" + name + ", dob=" + dateFormat.format(dob) + ", phone=" + phone + ", email="
-				+ email + ", image=" + image + "]";
+		return "Teacher [teacherID=" + teacherID + ", accountID=" + accountID + ", name=" + name + ", dob=" + dob
+				+ ", phone=" + phone + ", email=" + email + ", image=" + image + "]";
 	}
 
-	
 	
 	
 }

@@ -26,7 +26,7 @@ public class JPanelScore extends JPanel {
 	private JTable jtableScore;
 	private Map<String, Object> data;
 	/**
-	 * Create the panel.
+	 * 4.2 Hiển thị giao diện xem điểm
 	 */
 	public JPanelScore() {
 		setLayout(new BorderLayout(0, 0));
@@ -42,7 +42,7 @@ public class JPanelScore extends JPanel {
 		add(panel, BorderLayout.NORTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNewLabel = new JLabel("My Score");
+		JLabel lblNewLabel = new JLabel("Xem điểm");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
 		panel.add(lblNewLabel);
 		
@@ -52,6 +52,7 @@ public class JPanelScore extends JPanel {
 		this.data = data;
 		initJFrame();
 	}
+	// 1.2 Hiển thị bảng điểm
 	public void initJFrame() {
 		Account account = (Account) data.get("user");
 		ScoreModel scoreModel = new ScoreModel();
@@ -67,29 +68,31 @@ public class JPanelScore extends JPanel {
 			}
 			
 		};
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Active Process");
-		defaultTableModel.addColumn("Midterm Exam");
-		defaultTableModel.addColumn("Final Exam");
-		defaultTableModel.addColumn("Rank");
-		defaultTableModel.addColumn("Date");
+		defaultTableModel.addColumn("Tên khóa");
+		defaultTableModel.addColumn("Điểm quá trình");
+		defaultTableModel.addColumn("Điểm giữa kì");
+		defaultTableModel.addColumn("Điểm cuối kì");
+		defaultTableModel.addColumn("Xếp hạng");
+		defaultTableModel.addColumn("Ngày có điểm");
 		for (Manager managers : managerModel.findManagerByStudent(account.getUserID())) {
+			// 4.4 Trả ra điểm số của các khóa học
 			defaultTableModel.addRow(new Object[] {
-					courseModel.findCourseByID(managers.getMakh()).getCourseName(), scoreModel.findScoreST(account.getUserID(),
-							courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  scoreModel.findScoreST(account.getUserID(),
-									courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemquatrinh() : "null", 
+					courseModel.findCourseByID(managers.getMakh()).getCourseName(), // Tên khóa
+					scoreModel.findScoreST(account.getUserID(), 
+							courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  scoreModel.findScoreST(account.getUserID(), 
+									courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemquatrinh() : "", // Điểm quá trình
 									scoreModel.findScoreST(account.getUserID(),
 											courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  scoreModel.findScoreST(account.getUserID(),
-													courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemgiuaki() : "null",
+													courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemgiuaki() : "", // Điểm giữa kì
 													scoreModel.findScoreST(account.getUserID(),
 															courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  scoreModel.findScoreST(account.getUserID(),
-																	courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemcuoiki() : "null",
+																	courseModel.findCourseByID(managers.getMakh()).getCourseID()).getDiemcuoiki() : "", // Điểm cuối kì
 																	scoreModel.findScoreST(account.getUserID(),
 																			courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  scoreModel.findScoreST(account.getUserID(),
-																					courseModel.findCourseByID(managers.getMakh()).getCourseID()).getXeploai() : "null",
+																					courseModel.findCourseByID(managers.getMakh()).getCourseID()).getXeploai() : "", // Xếp loại
 																					scoreModel.findScoreST(account.getUserID(),
 																							courseModel.findCourseByID(managers.getMakh()).getCourseID()) != null ?  dateFormat.format(scoreModel.findScoreST(account.getUserID(),
-																									courseModel.findCourseByID(managers.getMakh()).getCourseID()).getNgaynhap()) : "null"
+																									courseModel.findCourseByID(managers.getMakh()).getCourseID()).getNgaynhap()) : "" // Ngày nhập điểm
 					
 			});
 		}

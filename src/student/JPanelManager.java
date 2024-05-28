@@ -50,7 +50,7 @@ public class JPanelManager extends JPanel {
 		add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNewLabel = new JLabel("My Course");
+		JLabel lblNewLabel = new JLabel("Lịch học của tôi");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
 		panel.add(lblNewLabel);
 		
@@ -109,19 +109,19 @@ public class JPanelManager extends JPanel {
 		jlabelGioHoc.setBounds(68, 178, 93, 30);
 		panel_5.add(jlabelGioHoc);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(JPanelManager.class.getResource("/icon/Info.png")));
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lblNewLabel_2.setBounds(10, 242, 35, 44);
-		panel_5.add(lblNewLabel_2);
-		
-		JTextPane txtpnClickVoKha = new JTextPane();
-		txtpnClickVoKha.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		txtpnClickVoKha.setText("Click vào khóa học để xem chi tiết lịch học");
-		txtpnClickVoKha.setEditable(false);
-		txtpnClickVoKha.setEnabled(false);
-		txtpnClickVoKha.setBounds(44, 242, 127, 83);
-		panel_5.add(txtpnClickVoKha);
+//		JLabel lblNewLabel_2 = new JLabel("");
+//		lblNewLabel_2.setIcon(new ImageIcon(JPanelManager.class.getResource("/icon/Info.png")));
+//		lblNewLabel_2.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+//		lblNewLabel_2.setBounds(10, 242, 35, 44);
+//		panel_5.add(lblNewLabel_2);
+//		
+//		JTextPane txtpnClickVoKha = new JTextPane();
+//		txtpnClickVoKha.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+//		txtpnClickVoKha.setText("Click vào khóa học để xem chi tiết lịch học");
+//		txtpnClickVoKha.setEditable(false);
+//		txtpnClickVoKha.setEnabled(false);
+//		txtpnClickVoKha.setBounds(44, 242, 127, 83);
+//		panel_5.add(txtpnClickVoKha);
 
 	}
 	public JPanelManager(Map<String, Object> data) {
@@ -143,9 +143,9 @@ public class JPanelManager extends JPanel {
 			}
 			
 		};
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Classroom");
-		defaultTableModel.addColumn("Date Register");
+		defaultTableModel.addColumn("Tên khóa học");
+		defaultTableModel.addColumn("Phòng học");
+		defaultTableModel.addColumn("Ngày đăng kí");
 		defaultTableModel.addColumn("");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		for (Manager managers : managerModel.findManagerByStudent(account.getUserID())) {

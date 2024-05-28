@@ -21,7 +21,7 @@ public class JPanelGioiThieu extends JPanel {
 	private JLabel jlabelBuoiHoc;
 	private JLabel jlabelImage;
 	/**
-	 * Create the panel.
+	 * 1.6 Hiển thị thông tin khóa học
 	 */
 	public JPanelGioiThieu() {
 		setLayout(null);

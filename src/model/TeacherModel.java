@@ -12,7 +12,7 @@ import entities.Teacher;
 
 public class TeacherModel {
 	public static void main(String[] args) {
-		System.out.println(findAll());
+		System.out.println(new TeacherModel().findById(12));
 	
 	}
 	public static List<Teacher> findAll(){
@@ -23,8 +23,8 @@ public class TeacherModel {
 			for (int i = 0; i < files.size(); i++) {
 				String[] values = files.get(i).split(",");
 				try {
-					teachers.add(new Teacher(Integer.parseInt(values[0]), values[1], dateFormat.parse(values[2]), 
-							values[3], values[4], values[5]));
+					teachers.add(new Teacher(Integer.parseInt(values[0]),Integer.parseInt(values[1]), values[2], dateFormat.parse(values[3]), 
+							values[4], values[5], values[6]));
 					
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
@@ -45,7 +45,7 @@ public class TeacherModel {
 	public Teacher findById(int id) {
 		Teacher teacher = null;
 		for (Teacher teachers : findAll()) {
-			if(teachers.getTeacherID() == id) {
+			if(teachers.getAccountID() == id) {
 				teacher = teachers;
 			}
 		}

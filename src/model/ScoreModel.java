@@ -47,7 +47,8 @@ public class ScoreModel {
 
 		return scores;
 	}
-
+	
+	// 4.3 Tìm điểm dựa mã sinh viên và mã khóa học
 	public Score findScoreST(int id, int courseId) {
 		Score score = null;
 		for (Score scores : findAll()) {
@@ -57,7 +58,8 @@ public class ScoreModel {
 		}
 		return score;
 	}
-
+	
+	// 3.8 Cập nhật điểm cho sinh viên ( Nếu sinh viên đó đã có điểm)
 	public static boolean updateScore(int mssv, int courseID, String content) {
 
 		boolean result = true;
@@ -110,6 +112,8 @@ public class ScoreModel {
 		}
 		return rank;
 	}
+	
+	// Tính điểm theo hệ số
 	public String rank2(Score score) {
 		String rank = "";
 		double avg = score.getDiemquatrinh()*0.1 + score.getDiemgiuaki()*0.3 + score.getDiemcuoiki()*0.6 ;
@@ -124,7 +128,7 @@ public class ScoreModel {
 		}
 		return rank;
 	}
-	
+	// 3.8 Tạo điểm cho sinh viên ( Nếu sinh viên đó chưa có điểm)
 	public static boolean createNewScore(String content) {
 		boolean result = true;
 		String oldContent = "";
