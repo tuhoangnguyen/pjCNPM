@@ -17,7 +17,6 @@ public class ManagerModel {
 		System.out.println(model.findAll());
 	}
 	public static List<Manager> findAll(){
-		//4,2,1,p01,10-2-2023
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		List<Manager> managers = new ArrayList<Manager>();
 		try {
@@ -42,6 +41,7 @@ public class ManagerModel {
 		
 		return managers;
 	}
+	// 1.8 Đăng kí khóa học cho sinh viên và lưu vào file manager.csv
 	public static boolean createManager(String content) {
 		boolean result = true;
 		String oldContent = "";
@@ -59,6 +59,9 @@ public class ManagerModel {
 		}
 		return result;
 	}
+	// Hàm trả về danh sách khóa học của sinh viên nào đó (Tham số truyền vào là id của sinh viên đó)
+	// 2.3 Kiểm tra các khóa học mà sinh viên đó đã đăng kí
+	// 4.3 Hàm bổ trợ cho tìm được điểm số của các khóa học mà sinh viên đó đã đăng kí
 	public List<Manager> findManagerByStudent(int id) {
 		List<Manager> managerList = new ArrayList<>();
 		for (Manager managers : findAll()) {
@@ -79,6 +82,7 @@ public class ManagerModel {
 		}
 		return managerList;
 	}
+	// Hàm tìm sinh viên học khóa học dựa vào id
 	public Manager findManager(int id) {
 		Manager manager = null;
 		for (Manager managers : findAll()) {

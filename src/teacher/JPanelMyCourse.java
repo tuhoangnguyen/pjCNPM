@@ -56,7 +56,7 @@ public class JPanelMyCourse extends JPanel {
 		add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNewLabel = new JLabel("My Course");
+		JLabel lblNewLabel = new JLabel("Lịch dạy");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 20));
 		panel.add(lblNewLabel);
 		
@@ -143,25 +143,31 @@ public class JPanelMyCourse extends JPanel {
 			}
 			
 		};
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Classroom");
-		defaultTableModel.addColumn("Start Date");
-		defaultTableModel.addColumn("Day");
-		defaultTableModel.addColumn("Time");
+		defaultTableModel.addColumn("Tên khóa học");
+		defaultTableModel.addColumn("Phòng học");
+		defaultTableModel.addColumn("Ngày bắt đầu");
+		defaultTableModel.addColumn("Thứ");
+		defaultTableModel.addColumn("Thời gian");
 		defaultTableModel.addColumn("");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (Course course : courseModel.searchByTeacherID(account.getUserID())) {
-			defaultTableModel.addRow(new Object[] {
-					course.getCourseName(), managerModel.findManager(course.getCourseID()).getPhonghoc()
-					,  dateFormat.format(course.getStartDate()), course.getNgayhoc(), course.getGiohoc()
+			if(managerModel.findManager(course.getCourseID()) != null) {
+				defaultTableModel.addRow(new Object[] {
+						course.getCourseName(), managerModel.findManager(course.getCourseID()).getPhonghoc()
+						,  dateFormat.format(course.getStartDate()), course.getNgayhoc(), course.getGiohoc()
 
-			});
+				});
+			} else {
+	
+			}
 		}
 		jtableCourse.setModel(defaultTableModel);
 		jtableCourse.getTableHeader().setReorderingAllowed(false);
 
 
 	}
+	
+	// 3.1 Giảng viên chọn 1 khóa học cụ thể thì nút Xem chi tiết mới được phép bấm
 	public void jtableCourse_mouseClicked(MouseEvent e) {
 		CourseModel courseModel = new CourseModel();
 		jbuttonViewList.setEnabled(true);
@@ -170,6 +176,8 @@ public class JPanelMyCourse extends JPanel {
 		courseID = courseModel.findCourseByName(value).getCourseID();
 		
 	}
+	
+	// Bấm xem chi tiết để chuyển hướng đến trang danh sách sinh viên đang theo học khóa học đó.
 	public void jbuttonViewList_actionPerformed(ActionEvent e) {
 		data.put("courseID", courseID);
 		JFrameViewList frameViewList = new JFrameViewList(data);
@@ -190,11 +198,11 @@ public class JPanelMyCourse extends JPanel {
 			}
 			
 		};
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Classroom");
-		defaultTableModel.addColumn("Start Date");
-		defaultTableModel.addColumn("Day");
-		defaultTableModel.addColumn("Time");
+		defaultTableModel.addColumn("Tên khóa học");
+		defaultTableModel.addColumn("Phòng học");
+		defaultTableModel.addColumn("Ngày bắt đầu");
+		defaultTableModel.addColumn("Thứ");
+		defaultTableModel.addColumn("Thời gian");
 		defaultTableModel.addColumn("");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		for (Course course : courseModel.searchByNameAndTeacherID(jtextFieldCourseName.getText().toLowerCase().trim(), account.getUserID())) {

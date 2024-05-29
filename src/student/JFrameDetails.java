@@ -47,7 +47,7 @@ public class JFrameDetails extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * 1.4 Hiển thị trang giới thiệu khóa học
 	 */
 	public JFrameDetails() {
 
@@ -162,6 +162,8 @@ public class JFrameDetails extends JFrame {
 		panelMainGioiThieu.add(panelTeacher);
 		panelTeacher.setVisible(true);
 	}
+	
+	// 1.5 Bấm chọn nút đăng kí để chuyển qua trang đăng kí khóa học
 	public void jbuttonDangKy_actionPerformed(ActionEvent e) {
 		clearScreen();
 		JPanelDangKy dangKy = new JPanelDangKy(data);
@@ -170,10 +172,10 @@ public class JFrameDetails extends JFrame {
 	}
 
 
-//	public void viewDangKy() {
-//		clearScreen();
-//		JPanelDangKy dangKy = new JPanelDangKy(data);
-//		panelMainGioiThieu.add(dangKy);
-//		dangKy.setVisible(true);
-//	}
+	public void viewDangKy() {
+		clearScreen();
+		JPanelDangKy dangKy = new JPanelDangKy(data);
+		panelMainGioiThieu.add(dangKy);
+		dangKy.setVisible(true);
+	}
 }

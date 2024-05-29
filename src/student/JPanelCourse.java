@@ -48,7 +48,7 @@ public class JPanelCourse extends JPanel {
 	private JButton jbuttonRefresh;
 
 	/**
-	 * Create the panel.
+	 * 1.2 Chuyển hướng đến trang danh sách khóa học
 	 */
 	public JPanelCourse() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -58,7 +58,7 @@ public class JPanelCourse extends JPanel {
 		add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNewLabel = new JLabel("Course");
+		JLabel lblNewLabel = new JLabel("Danh sách khóa học");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		panel.add(lblNewLabel);
 		
@@ -66,7 +66,7 @@ public class JPanelCourse extends JPanel {
 		add(panel_1);
 		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		JLabel lblNewLabel_1 = new JLabel("Search: ");
+		JLabel lblNewLabel_1 = new JLabel("Tìm kiếm: ");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		panel_1.add(lblNewLabel_1);
 		
@@ -75,7 +75,7 @@ public class JPanelCourse extends JPanel {
 		panel_1.add(jtextFieldSearch);
 		jtextFieldSearch.setColumns(10);
 		
-		jbuttonSearch = new JButton("Search");
+		jbuttonSearch = new JButton("Tìm kiếm");
 		jbuttonSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jbuttonSearch_jbuttonSearch(e);
@@ -83,7 +83,7 @@ public class JPanelCourse extends JPanel {
 		});
 		panel_1.add(jbuttonSearch);
 		
-		jbuttonRefresh = new JButton("Refresh");
+		jbuttonRefresh = new JButton("Tải lại");
 		jbuttonRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jbuttonRefresh_actionPerformed(e);
@@ -114,7 +114,7 @@ public class JPanelCourse extends JPanel {
 		panel_2.setBackground(new Color(153, 153, 255));
 		add(panel_2);
 		
-		jbuttonDetails = new JButton("Details");
+		jbuttonDetails = new JButton("Chi tiết");
 		jbuttonDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jbuttonDetails_actionPerformed(e);
@@ -142,14 +142,14 @@ public class JPanelCourse extends JPanel {
 			}
 			
 		};
-		defaultTableModel.addColumn("ID");
-		defaultTableModel.addColumn("Course Name");
-		defaultTableModel.addColumn("Teacher Name");
-		defaultTableModel.addColumn("Start Date");
-		defaultTableModel.addColumn("Date");
-		defaultTableModel.addColumn("Fee");
-		defaultTableModel.addColumn("Quantity");
-		defaultTableModel.addColumn("Image");
+		defaultTableModel.addColumn("STT");
+		defaultTableModel.addColumn("Tên khóa");
+		defaultTableModel.addColumn("Tên giảng viên");
+		defaultTableModel.addColumn("Ngày bắt đầu");
+		defaultTableModel.addColumn("Thời gian học");
+		defaultTableModel.addColumn("Học phí");
+		defaultTableModel.addColumn("Chỗ ngồi");
+		defaultTableModel.addColumn("Hình ảnh");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		for (Course courses : courseModel.findAll()) {
 			
@@ -184,12 +184,14 @@ public class JPanelCourse extends JPanel {
 			
 		}
 	}
+	// 1.3 Chọn 1 khóa học cụ thể để xem chi tiết
 	public void jtableCourse_mouseClicked(MouseEvent e) {
 		jbuttonDetails.setEnabled(true);
 		int getSelectedRow = jtableCourse.getSelectedRow();
 		valueID = Integer.parseInt(jtableCourse.getValueAt(getSelectedRow, 0).toString());
 		valueName = jtableCourse.getValueAt(getSelectedRow, 2).toString();
 	}
+	// Sau khi chọn 1 khóa học cụ thể nút xem chi tiết sẽ cho phép được bấm
 	public void jbuttonDetails_actionPerformed(ActionEvent e) {
 		CourseModel courseModel = new CourseModel();
 		TeacherModel model = new TeacherModel();

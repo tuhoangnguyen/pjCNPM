@@ -117,7 +117,7 @@ public class JFrameMain extends JFrame {
 		this.data = data;
 		initJFrame();		
 		Account account = (Account) data.get("user");
-		jlabelWelcome.setText("Welcome " + account.getFullName() + " To T-AcademyManagement");
+		jlabelWelcome.setText("Chào mừng " + account.getFullName() + " đến với T-AcademyManagement");
 	}
 	public void initJFrame() {
 		Account account = (Account) data.get("user");

@@ -81,7 +81,7 @@ public class JPanelProfile extends JPanel {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(153, 153, 255));
-		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Information", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Thông tin", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.add(panel_2);
 		panel_2.setLayout(null);
 		

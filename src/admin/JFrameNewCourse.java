@@ -258,7 +258,7 @@ public class JFrameNewCourse extends JFrame {
 //5,Cau truc du lieu,24/05/2023,3000000,9,7months,C:\Users\ACER\Desktop\image\ctdl.jpg,100,6-7,17-19
 		content = String.valueOf(courseModel.findAll().get(courseModel.findAll().size() - 1).getCourseID() + 1) + ","
 				+ jtextFieldCourseName.getText() + "," + dateFormat.format(dateChooser.getDate()) + ","
-				+ jtextFieldPrice.getText() + "," + teacher.getTeacherID() + "," + jtextFieldDuration.getText() + ","
+				+ jtextFieldPrice.getText() + "," + teacher.getAccountID() + "," + jtextFieldDuration.getText() + ","
 				+ file.getAbsolutePath() + "," + jtextFieldQuantity.getText() + ","
 				+ jcomboBoxDay.getSelectedItem().toString() + "," + jcomboBoxTime.getSelectedItem().toString();
 		if (courseModel.createNewCourse(content)) {

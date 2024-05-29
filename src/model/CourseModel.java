@@ -93,7 +93,8 @@ public class CourseModel {
 		}
 		return result;
 	}
-
+	
+	// Tìm khóa học dựa vào id
 	public Course findCourseByID(int id) {
 		Course course = null;
 		for (Course courses : findAll()) {

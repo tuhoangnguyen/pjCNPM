@@ -55,7 +55,7 @@ public class AccountModel {
 		}
 		return result;
 	}
-	
+	// Hàm kiểm tra tên
 	public static Account checkUsername(String username) {
 		Account account = null;
 		for (Account accounts : findAll()) {
@@ -67,6 +67,7 @@ public class AccountModel {
 		return account;
 		
 	}
+	// Hàm kiểm tra đăng nhập
 	public boolean checkLogin(String username, String password) {
 		boolean result = false;
 		if(checkUsername(username) != null) {

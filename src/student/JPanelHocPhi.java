@@ -27,7 +27,7 @@ public class JPanelHocPhi extends JPanel {
 	private JLabel totalFee;
 
 	/**
-	 * Create the panel.
+	 * 2.2 Hiển thị giao diện xem học phí 
 	 */
 	public JPanelHocPhi() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -54,7 +54,7 @@ public class JPanelHocPhi extends JPanel {
 		panel_1.add(panel_2, BorderLayout.NORTH);
 		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
 		
-		JLabel lblNewLabel_1 = new JLabel("Tổng cộng:");
+		JLabel lblNewLabel_1 = new JLabel("Tổng tiền:");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		panel_2.add(lblNewLabel_1);
 		
@@ -69,7 +69,7 @@ public class JPanelHocPhi extends JPanel {
 		this.dataMain = data;
 		initJframe();
 	}
-	
+	// 2.4 Trả ra học phí các khóa học của sinh viên
 	public void initJframe() {
 		CourseModel courseModel = new CourseModel();
 		Course course = (Course) dataMain.get("course");
@@ -85,12 +85,13 @@ public class JPanelHocPhi extends JPanel {
 			}
 			
 		};
+		// 2.5 Hiển thị thông tin học phí
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd--mm--yyyy");
-		defaultTableModel.addColumn("ID Course");
-		defaultTableModel.addColumn("Name Course");
-		defaultTableModel.addColumn("Name Teacher");
-		defaultTableModel.addColumn("Date Login");
-		defaultTableModel.addColumn("Fee");
+		defaultTableModel.addColumn("Mã khóa học");
+		defaultTableModel.addColumn("Tên khóa học");
+		defaultTableModel.addColumn("Tên giảng viên");
+		defaultTableModel.addColumn("Ngày đăng kí");
+		defaultTableModel.addColumn("Học phí");
 		int result = 0;
 		for(Manager managers : managerModel.findManagerByStudent(account.getUserID())) {
 			defaultTableModel.addRow(new Object[] {

@@ -36,7 +36,8 @@ public class JPanelDangKy extends JPanel {
 	private JLabel jlabelGioHoc;
 
 	/**
-	 * Create the panel.
+	 * 1.6
+	 * Chuyển hướng trang đăng kí khóa học
 	 */
 	public JPanelDangKy() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -185,7 +186,7 @@ public class JPanelDangKy extends JPanel {
 		jlabelLichHoc.setText("Thứ: " + course.getNgayhoc());
 		jlabelGioHoc.setText("Giờ: " + course.getGiohoc());
 	}
-	//4,2,1,p01,10-02-2023
+	// 1.7 Đăng kí khóa học cho sinh viên
 	public void jbuttonDangKy_actionPerformed(ActionEvent e) {
 		Course course = (Course) data.get("course");
 		Account account = (Account) data.get("user");
@@ -205,10 +206,13 @@ public class JPanelDangKy extends JPanel {
 		}
 		if(jtextFieldName.getText().equals("") || jtextFieldEmail.getText().equals("") || jtextFieldPhone.getText().equals("")){
 			JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
+			//1.8 Đăng kí khóa học cho sinh viên
 		}else if(managerModel.createManager(content)) {
+			// 1.9 Trả ra thông báo đăng kí thành công và lưu dữ liệu vào file manager.csv
 			JOptionPane.showMessageDialog(this, "Đăng ký thành công");
 			
 		} else {
+			// 1.9 Trả ra thông báo đăng kí không thành công
 			JOptionPane.showConfirmDialog(this, "Đăng ký thất bại");
 		}
 	}

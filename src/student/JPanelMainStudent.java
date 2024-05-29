@@ -145,7 +145,8 @@ public class JPanelMainStudent extends JPanel {
 		jPanelProfile.setVisible(true);
 
 	}
-
+	
+	// 1.1 Chọn mục khóa học
 	public void jbuttonCourse_actionPerformed(ActionEvent e) {
 		clearScreen();
 		JPanelCourse jPanelCourse = new JPanelCourse(data);
@@ -160,7 +161,7 @@ public class JPanelMainStudent extends JPanel {
 		jPanelManager.setVisible(true);
 	}
 
-	
+	// 2.1 Chọn mục xem học phí
 	public void jbuttonTuiton_actionPerformed(ActionEvent e) {
 		clearScreen();
 		JPanelHocPhi jPanelHocPhi = new JPanelHocPhi(data);
@@ -168,6 +169,7 @@ public class JPanelMainStudent extends JPanel {
 		jPanelHocPhi.setVisible(true);
 	}
 	
+	// 4.1 Chọn mục xem điểm
 	public void jbuttonScore_actionPerformed(ActionEvent e) {
 		clearScreen();
 		JPanelScore jPanelScore = new JPanelScore(data);
